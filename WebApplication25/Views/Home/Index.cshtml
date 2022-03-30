@@ -1,0 +1,16 @@
+﻿@model ViewModel
+
+@foreach (var ad in Model.Ads)
+{
+    <div class="jumbotron">
+        <h5>Listed by @ad.UserName</h5>
+        <h5>Listed on @ad.DateSubmitted.ToShortDateString()</h5>
+        <h5>Phone Number: @ad.Phone</h5>
+        <h3>Details:</h3>
+        <p>@ad.Description</p>
+        @if (User.Identity.IsAuthenticated && ad.Email == User.Identity.Name)
+        {
+            <a href="/home/delete?id=@ad.Id" class="btn btn-danger">Delete</a>
+        }
+    </div>
+}
